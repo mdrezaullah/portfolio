@@ -1,0 +1,392 @@
+/* style.css */
+
+/* CSS Variables for theming */
+:root {
+    --bg-color: #0f0f0f; /* Changed background color for dark mode to a deeper black */
+    --text-color: #e0e0e0;
+    --card-bg: #1a1a1a; /* Adjusted card background for new dark mode bg */
+    --accent-color: #6a0dad;
+    --accent-hover-color: #8a2be2;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --timeline-line-color: rgba(255, 255, 255, 0.2);
+    --timeline-dot-border: #0f0f0f; /* Matches new body background */
+    --heading-color: #ffffff;
+    --sub-heading-color: #9a67ea;
+    --muted-text-color: #a0aec0; /* Tailwind gray-400 */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode {
+    --bg-color: #f8f9fa; /* Changed background color for light mode to a very light grey */
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --accent-color: #3b82f6; /* A blue for light mode */
+    --accent-hover-color: #2563eb; /* Darker blue on hover */
+    --border-color: #cbd5e0;
+    --timeline-line-color: #cbd5e0;
+    --timeline-dot-border: #f8f9fa; /* Matches new light mode body background */
+    --heading-color: #1a202c;
+    --sub-heading-color: #1d4ed8; /* Darker blue */
+    --muted-text-color: #6b7280; /* Tailwind gray-500 */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scroll-behavior: smooth; /* Smooth scrolling for navigation */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+/* Container for consistent padding and max-width */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem; /* py-6 px-4 for mobile */
+}
+@media (min-width: 768px) {
+    .container {
+        padding: 1.5rem 2rem; /* py-6 px-8 for desktop */
+    }
+}
+
+/* Section Heading Styles */
+.section-heading {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 800; /* font-extrabold */
+    color: var(--heading-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+/* Card Styles for Sections */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 8px 16px var(--shadow-color);
+    padding: 2.5rem;
+    margin-bottom: 5rem; /* Significantly increased margin for more space between cards */
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Fix for fixed header overlapping content */
+    scroll-margin-top: 80px; /* Adjust this value to be slightly more than your nav height */
+}
+.card:hover {
+    border-color: var(--accent-hover-color); /* Glowing border on hover */
+    box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4); /* Subtle glow on card */
+}
+
+/* Timeline Specific Styles */
+.timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 2rem;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    border: 3px solid var(--timeline-dot-border);
+    z-index: 1;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 1.5rem;
+    bottom: -0.5rem;
+    width: 2px;
+    background-color: var(--timeline-line-color);
+    transition: background-color 0.3s ease;
+}
+.timeline-item:last-child::after {
+    display: none; /* Hide line for the last item */
+}
+
+/* Social Icon Links */
+.social-icon-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Reduced size */
+    height: 40px; /* Reduced size */
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.25rem; /* Reduced font size for icon */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+.social-icon-link:hover {
+    transform: translateY(-5px) scale(1.1); /* Pop effect on hover */
+    background-color: var(--accent-hover-color);
+}
+
+/* Connect Button Styles */
+.connect-button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+.connect-button:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-2px);
+    /* Enhanced glowing shadow */
+    box-shadow: 0 0 15px 5px rgba(106, 13, 173, 0.7), 0 0 30px 10px rgba(106, 13, 173, 0.5);
+}
+
+/* Navigation link specific styles for size and popup animation */
+.nav-link {
+    font-size: 0.875rem; /* Reduced font size for nav links (text-sm) */
+    transition: transform 0.2s ease-in-out, color 0.3s ease; /* Smooth transition for popup effect and color */
+}
+.nav-link:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover (pop effect) */
+    color: var(--accent-hover-color); /* Change color on hover */
+}
+
+/* Text Color Variables */
+.text-accent {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+.text-sub-heading {
+    color: var(--sub-heading-color);
+    transition: color 0.3s ease;
+}
+.text-muted {
+    color: var(--muted-text-color);
+    transition: color 0.3s ease;
+}
+.text-heading {
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+/* Advanced Animations for sections (Fade-in and Slide-up) */
+.animated-section {
+    opacity: 0;
+    transform: translateY(40px); /* Increased slide distance */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower and smoother transition */
+}
+.animated-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Section Text Animations (Fade-in and Scale-up/Slide-up) */
+@keyframes fadeInScaleUp {
+    0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-animated-text {
+    opacity: 0;
+    animation: fadeInScaleUp 0.8s ease-out forwards; /* Apply animation */
+}
+/* Staggered delays for hero elements - now much faster */
+.hero-animated-text:nth-child(1) { animation-delay: 0.2s; } /* "Hi There!" */
+.hero-animated-text:nth-child(2) { animation-delay: 0.7s; } /* "I'M MD REZAULLAH" */
+/* Typing effect element is handled separately with its own delay */
+.hero-animated-text:nth-child(4) { animation-delay: 2.5s; } /* Social icons (after typing finishes) */
+.hero-animated-text:nth-child(5) { animation-delay: 3.0s; } /* Let's Connect button */
+
+/* Typing Effect for Hero Section */
+.typing-container {
+    display: inline-block; /* Allows width animation */
+    overflow: hidden; /* Hides overflowing text */
+    white-space: nowrap; /* Keeps text on a single line */
+    border-right: 0.15em solid var(--accent-color); /* Blinking caret */
+    animation: typing 2.5s steps(30, end) forwards, blink-caret 0.75s step-end infinite; /* Adjusted typing duration for shorter text */
+    animation-delay: 1.5s; /* Starts after "I'M MD REZAULLAH" begins */
+    max-width: 0; /* Start with no width */
+    vertical-align: middle; /* Align with text */
+}
+
+@keyframes typing {
+    from { max-width: 0 }
+    to { max-width: 100% } /* Adjust to cover the full text width */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color); }
+}
+
+/* Modal specific styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 1rem; /* More rounded */
+    box-shadow: 0 10px 20px var(--shadow-color);
+    max-width: 500px;
+    width: 90%; /* Responsive width */
+    transform: scale(0.8); /* Start smaller for popup effect */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    position: relative;
+}
+.modal-overlay.is-visible .modal-content {
+    transform: scale(1); /* Scale up on appear */
+}
+.modal-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.modal-close-button:hover {
+    color: var(--accent-color);
+}
+.modal-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.modal-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+.modal-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+.modal-submit-button {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.modal-submit-button:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Specific Styles */
+#mobile-menu {
+    /* Initial state: off-screen */
+    transform: translateX(-100%);
+    /* Ensure it's full height and takes full width */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 40; /* Below the main nav, but above content */
+    display: flex; /* Use flex for centering content */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    padding: 2rem; /* Add some padding */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+#mobile-menu.is-open {
+    transform: translateX(0); /* Slide in */
+}
+
+#mobile-menu a.nav-link {
+    font-size: 1.5rem; /* Larger links for touch */
+    padding: 0.75rem 0;
+    width: fit-content; /* Prevent full width for links */
+}
+
+#mobile-menu #mobile-theme-toggle {
+    font-size: 2rem; /* Larger icon for mobile */
+    margin-top: 1.5rem;
+}
+
+/* Ensure body doesn't scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
+/* Responsive adjustments for hero section text */
+@media (max-width: 767px) {
+    .hero-animated-text {
+        font-size: 1.5rem; /* Smaller font on mobile for "Hi There!" */
+    }
+    .hero-animated-text:nth-child(2) {
+        font-size: 3rem; /* Smaller heading on mobile */
+    }
+    .typing-container {
+        font-size: 1.75rem; /* Smaller typing text on mobile */
+    }
+    .connect-button {
+        font-size: 1rem; /* Smaller button text on mobile */
+        padding: 0.6rem 1.5rem;
+    }
+}
+
+/* Responsive adjustments for contact section */
+@media (max-width: 767px) {
+    #contact .flex-col {
+        align-items: flex-start; /* Align contact items to the left */
+    }
+    #contact .space-y-4 > * {
+        margin-bottom: 1rem; /* Add space between contact items */
+    }
+    #contact .space-x-8 {
+        margin-left: 0; /* Remove horizontal spacing if it exists */
+        margin-top: 1rem; /* Add vertical spacing */
+    }
+}
